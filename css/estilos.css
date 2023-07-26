@@ -17,7 +17,7 @@
         text-align: center;
         color: white;
         font-size: x-large;
-        background-color: #f7750bce;
+        background: linear-gradient(blueviolet, #f7750bce);
         DISPLAY: flex;
         flex-direction: column;
         justify-content: center;
@@ -26,7 +26,7 @@
     
     #login{
         background-color: #bb8a639c;
-        margin-top: 10%;
+        margin-top: 7%;
         margin-left: 10%;
         margin-right: 10%;
         height: 70vh;
@@ -65,7 +65,7 @@
         text-align: center;
         color: white;
         font-size: xx-large;
-        background-color: #f7750bce;
+        background: linear-gradient(blueviolet, #f7750bce);
         DISPLAY: flex;
         justify-content: center;
         align-items: center;
