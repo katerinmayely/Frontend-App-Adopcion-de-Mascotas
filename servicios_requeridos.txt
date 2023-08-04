@@ -1,0 +1,40 @@
+BACKEND
+
+    Base de Datos (Tablas Requeridas):
+
+        1. Usuarios: id (int), correo electrónico (String), nombre completo (String), contraseña (String) y 
+            un listado de mascotas (List) (Relación 1:M con la tabla mascotas).
+
+        2. Mascotas: id (int), tipo (String) (perro, gato, pez o ave) y nombre.
+
+    Web Services Requeridos:
+
+        1. Verificación de usuario.
+            Paramétros: Correo Eléctrónico y Contraseña.
+            Retorna: True, si el usuario existe. False si el usuario no existe.
+
+        2. Obtener todos los perritos.
+            Sin parámetros.
+            Retorna una lista con todos los perritos.
+
+        3. Obtener todos los gatitos.
+            Sin parámetros.
+            Retorna una lista con todos los gatitos.
+
+        4. Obtener todos las aves.
+            Sin parámetros.
+            Retorna una lista con todos las aves.
+
+        5. Obtener todos los peces.
+            Sin parámetros.
+            Retorna una lista con todos los peces.
+
+        6. Adoptar mascota:
+            Paramétros: id del usuario, id de la mascota.
+            Retorna: True, si la asociación fué exitosa. False, si ocurrión algún error.
+            Agrega la mascota seleccionada a la lista de mascotas del usuario seleccionado y la elimina de 
+            la tabla de mascotas.
+
+        7. Mostrar mascotas de usuario:
+            Paramétros: id del usuario.
+            Retorna: El listado de mascotas de ese usuario.
