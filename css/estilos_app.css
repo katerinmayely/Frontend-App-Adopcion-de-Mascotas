@@ -1,6 +1,7 @@
 @media(min-width : 600px){
     #body{
         font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
     }
 
     #principal{
@@ -31,10 +32,6 @@
         background-color: #f9c11a73;
     }
 
-    #categoria:hover{
-        background-color: rgba(156, 96, 212, 0.87);
-    }
-
     #texto{
         font-size: x-large;
         padding: 5%;
@@ -54,11 +51,68 @@
     #imagen{
         width: 45%;
     }
+
+    #mostrar-mascotas{
+        padding: 2%;
+        box-sizing: border-box;
+    }
+
+    #mascota{
+        margin-bottom: 10px;
+        background-color: white;
+        padding: 10px;
+        cursor: pointer;
+        box-shadow: 0px 0px 5px gray;
+      
+    }
+
+    #saludo2{
+        text-align: center;
+        color: #f7750bce;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    #mascota{
+        margin: 10px;
+        background-color: #fa9a4cda;
+        padding: 10px;
+        cursor: pointer;
+        box-shadow: 0px 0px 5px gray;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      
+    }
+
+    #nombre-mascota{
+        font-family: 'Negrita' !important;
+        text-align: center;
+    }
+
+    #btn-adoptar{
+        font-size: smaller ;
+    }
+
+    
+    #img-logo{
+        width: 5%;
+    }
+
+    #seleccionar-categoria{
+        width: 80%;
+        margin-top: 8%;
+    }
+
+    #contenedor-mascotas{
+        height: 65vh;
+    }
 }
 
 @media(max-width : 599px){
     #body{
         font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
     }
 
     #principal{
@@ -73,10 +127,10 @@
     #categorias{
         width: 80%;
         height: 80%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10%;
-        padding: 7%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
     }
 
     #categoria{
@@ -89,10 +143,8 @@
         font-size: xxx-large;
         color: beige;
         background-color: #d3a41873;
-    }
-
-    #categoria:hover{
-        background-color: rgba(159, 83, 230, 0.726);
+        width: 70%;
+        height: 40%;
     }
 
     #texto{
@@ -113,5 +165,92 @@
     #imagen{
         width: 20%;
     }
+
+    #mostrar-mascotas{
+        padding: 2%;
+        box-sizing: border-box;
+    }
+
+    #saludo2{
+        text-align: center;
+        color: #f7750bce;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    #mascota{
+        background-color: #fa9a4cda;
+        cursor: pointer;
+        padding: 10px;
+        box-shadow: 0px 0px 5px gray;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #nombre-mascota{
+        font-family: 'Negrita' !important;
+        text-align: center;
+    }
+
+    #btn-adoptar{
+        font-size: small ;
+    }
+
+    
+    #img-logo{
+        width: 10%;
+    }
+    
+    #seleccionar-categoria{
+        width: 80%;
+        margin-top: 20%;
+    }
+
+    #contenedor-mascotas{
+        height: 80vh;
+    }
 }
 
+#contenedor-mascotas{
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: scroll;
+    margin: 5%;
+}
+
+#mostrar-mascotas{
+    width: 100vw;
+    height: 100vh;
+}
+
+#categoria:hover{
+    background-color: rgba(159, 83, 230, 0.726);
+}
+
+#btn-adoptar{
+    border-radius: 5px;
+    width: 100%;
+    background-color: white;
+    border-bottom: red;
+}
+
+#nav{
+    padding-left: 2%; 
+    padding-right: 2%;
+    justify-content: center;
+}
+
+#encabezado-modal{
+    background-color: #f7750bce;
+    color: white;
+}
+
+#modal-mascotas-user{
+    height: 100vh;
+}
+
+.modal-body{
+    height: 80vh;
+    overflow: scroll;
+}
