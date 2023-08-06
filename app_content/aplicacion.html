@@ -16,11 +16,8 @@
         <!-- Inicio - barra de navegación -->
         <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" id="nav">
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-mascotas-user">
-                Launch demo modal
+            <button id="btn-mostrar-mascotas" type="button" class="btn" onclick="mostrarMascotasCliente()">
             </button>
-
-            <img src="../src/img/logo/icono2.ico" alt="Logotipo" id="img-logo" >
             
             <div >
                 Loving Paws Adoption
@@ -29,13 +26,15 @@
         <!-- Fin - Barra de navegación -->
 
         <!--Inicio - select para seleccionar una categoría-->
-        <select id="seleccionar-categoria" onchange="">
+        <select id="seleccionar-categoria" onchange="cambiarCategoria()">
             <option disabled selected >Selecciona otra categoría</option>
-            <option value="perro">Perros</option>
-            <option value="gato">Gatos</option>
+            <option value="perros">Perros</option>
+            <option value="gatos">Gatos</option>
             <option value="todos">Mostrar Todos</option>
         </select>
         <!--Fin - select para seleccionar una categoría-->
+
+        <button class="btn-outline-secondary" onclick="mostrarMascotasCliente()">TUS MASCOTAS</button>
 
         <!--Inicio - Contenedor principal de mascotas-->
         <div class="row" id="contenedor-mascotas">
@@ -50,15 +49,8 @@
                 <div class="modal-header" id="encabezado-modal">
                   <h1 class="modal-title fs-5" > <b>Tus mascotas:</b></h1>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="contenedor-mascotas-user">
 
-                    <div class=" " id="mascota" >
-                        <div>
-                            <img src="../src/img/perros/doggy3.jpg" alt="Icono App" class="card-img-top" >
-                            <div id="nombre-mascota">Lacy</div>
-                        </div>
-                    </div>
-        
                     <div class=" " id="mascota" >
                         <div>
                             <img src="../src/img/gatos/gato3.jpg" alt="Icono App" class="card-img-top" >
@@ -91,7 +83,7 @@
 
     </main>
 
-    <script src="../js/controller.js"></script>
+    <script src="../js/controlador.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>

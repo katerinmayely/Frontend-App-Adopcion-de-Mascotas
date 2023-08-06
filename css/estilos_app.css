@@ -270,7 +270,7 @@
 }
 
 .modal-body{
-    height: 80vh;
+    height: 70vh;
     overflow: scroll;
 }
 
@@ -298,4 +298,15 @@
 
 .centrado{
     text-align: center;
+}
+
+#btn-mostrar-mascotas{
+    background-image: url(../src/img/logo/icono1.png);
+    width: 40px;
+    height: 50px;
+    background-position: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: grid;
+    place-items: center;
 }
