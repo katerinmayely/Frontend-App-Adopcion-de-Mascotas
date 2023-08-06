@@ -103,8 +103,6 @@ usuarios.forEach(usuario => {
     }
 })
 
-console.log(usuarioAutenticado);
-
 const mostrarMascotas = () => {
     document.getElementById("contenedor-mascotas").innerHTML = '';
     mascotas.forEach(mascota => {
@@ -193,7 +191,6 @@ const mostrarMascotasCliente = () => {
 }
 
 const adoptar = (idMascota) => {
-    console.log("adopting...");
     var mascotaAdoptar;
     mascotas.forEach(mascota => {
         if(idMascota == mascota.id){
