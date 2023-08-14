@@ -1,111 +1,66 @@
-var usuarios = [
-    {
-        dni : "0203200234567",
-        nombre : "Maria",
-        apellido : "Juarez",
-        usuario : "mjuarez@gmail.com",
-        contrasenia : "1234",
-        mascotas : []
-    },
-    {
-        dni : "0203200234568",
-        nombre : "Mario",
-        apellido : "Alvarado",
-        usuario : "malvarado@gmail.com",
-        contrasenia : "1234",
-        mascotas : []
-    }
-];
-
-var mascotas = [
-    {
-        id : 1, 
-        nombre : "Scooby",
-        peso : 2.45,
-        edad : 2,
-        raza : "x",
-        categoria : "PERRO",
-        img : "img/perros/doggy1.jpg"
-    },
-    {
-        id : 2, 
-        nombre : "Figaro",
-        peso : 2.45,
-        edad : 2,
-        raza : "x",
-        categoria : "GATO",
-        img : "img/gatos/gato1.jpg"
-    },
-    {
-        id : 3, 
-        nombre : "Blacky",
-        peso : 2.45,
-        edad : 2,
-        raza : "x",
-        categoria : "PERRO",
-        img : "img/perros/doggy2.jpg"
-    },
-    {
-        id : 4, 
-        nombre : "Pitagoras",
-        peso : 2.45,
-        edad : 2,
-        raza : "x",
-        categoria : "GATO",
-        img : "img/gatos/gato2.jpg"
-    },
-    {
-        id : 5, 
-        nombre : "Lacy",
-        peso : 2.45,
-        edad : 2,
-        raza : "x",
-        categoria : "PERRO",
-        img : "img/perros/doggy3.jpg"
-    },
-    {
-        id : 6, 
-        nombre : "Tom",
-        peso : 2.45,
-        edad : 2,
-        raza : "x",
-        categoria : "GATO",
-        img : "img/gatos/gato3.jpg"
-    },
-    {
-        id : 7, 
-        nombre : "Ranger",
-        peso : 2.45,
-        edad : 2,
-        raza : "x",
-        categoria : "PERRO",
-        img : "img/perros/doggy4.jpg"
-    },
-    {
-        id : 8, 
-        nombre : "Angela",
-        peso : 2.45,
-        edad : 2,
-        raza : "x",
-        categoria : "GATO",
-        img : "img/gatos/gato4.jpg"
-    }
-];
-
-
+var usuarios;
+var mascotas;
+var gatos;
+var perros;
+var usuarioAutenticado;
 const datos = new URLSearchParams(window.location.search);
 var correoUsuario = datos.get('usuario');
+console.log(correoUsuario);
 
-var usuarioAutenticado;
-usuarios.forEach(usuario => {
-    if(correoUsuario == usuario.usuario){
-        usuarioAutenticado = usuario;
+var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch("http://192.168.0.101:8000/usuarios/obtener", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        usuarios = result; 
+
+        console.log(usuarios); 
+        usuarios.usuarios.forEach(usuario => {
+            if(correoUsuario == usuario.email){
+                usuarioAutenticado = usuario;
+                console.log(usuarioAutenticado);
+            }
+        })
+
+       obtenerMascotas();
+
+    })
+    .catch(error => console.log('error', error));
+
+const cambiarCategoria = () => {
+    let categoria = document.getElementById("seleccionar-categoria").value;
+    if(categoria == "perros"){
+        obtenerPerros();
+    }else if(categoria == "gatos"){
+        obtenerGatos();
+    }else{
+        obtenerMascotas();
     }
-})
+}
+    
 
-const mostrarMascotas = () => {
+function obtenerMascotas(){
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+      
+      fetch("http://192.168.0.101:8000/mascotas", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            mascotas = result;
+            mostrarMascotas();
+        })
+        .catch(error => console.log('error', error));
+}
+
+function mostrarMascotas(){
     document.getElementById("contenedor-mascotas").innerHTML = '';
-    mascotas.forEach(mascota => {
+    mascotas.mascotas.forEach(mascota => {
         document.getElementById("contenedor-mascotas").innerHTML += `
             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 " id="mascota" >
                 <div>
@@ -113,7 +68,7 @@ const mostrarMascotas = () => {
                     <div id="nombre-mascota">${mascota.nombre}</div>
                 </div>
                 <div style="text-align: center;">
-                    <button id="btn-adoptar" onclick="adoptar(${mascota.id})">ADOPTAR</button> 
+                    <button id="btn-adoptar" onclick="adoptar(${mascota.id_mascota})">ADOPTAR</button> 
                 </div>
             </div>
         `
@@ -123,60 +78,31 @@ const mostrarMascotas = () => {
 
 mostrarMascotas();
 
-const mostrarPerros = () => {
-    document.getElementById("contenedor-mascotas").innerHTML = '';
-    mascotas.forEach(mascota => {
-        if(mascota.categoria == "PERRO"){
-            document.getElementById("contenedor-mascotas").innerHTML += `
-                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 " id="mascota" >
-                    <div>
-                        <img src="../src/${mascota.img}" alt="img mascota" class="card-img-top" >
-                        <div id="nombre-mascota">${mascota.nombre}</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <button id="btn-adoptar" onclick="adoptar(${mascota.id})">ADOPTAR</button> 
-                    </div>
-                </div>
-            `
-        }
-    });
-}
-
 const mostrarGatos = () => {
     document.getElementById("contenedor-mascotas").innerHTML = '';
-    mascotas.forEach(mascota => {
-        if(mascota.categoria == "GATO"){
-            document.getElementById("contenedor-mascotas").innerHTML += `
-                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 " id="mascota" >
+    gatos.forEach(gato => {
+        document.getElementById("contenedor-mascotas").innerHTML += `
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 " id="mascota" >
                     <div>
-                        <img src="../src/${mascota.img}" alt="img mascota" class="card-img-top" >
-                        <div id="nombre-mascota">${mascota.nombre}</div>
+                        <img src="../src/${gato.img}" alt="img mascota" class="card-img-top" >
+                        <div id="nombre-mascota">${gato.nombre}</div>
                     </div>
                     <div style="text-align: center;">
-                        <button id="btn-adoptar" onclick="adoptar(${mascota.id})">ADOPTAR</button> 
+                        <button id="btn-adoptar" onclick="adoptar(${gato.id_mascota})">ADOPTAR</button> 
                     </div>
-                </div>
-            `
-        }
+            </div>
+        `
     });
 }
 
-const cambiarCategoria = () => {
-    let categoria = document.getElementById("seleccionar-categoria").value;
-    if(categoria == "perros"){
-        mostrarPerros();
-    }else if(categoria == "gatos"){
-        mostrarGatos();
-    }else{
-        mostrarMascotas();
-    }
-}
+var mascotasCliente;
 
-const mostrarMascotasCliente = () => {
+
+function mostrarMascotasCliente(){
     const modal = new bootstrap.Modal(document.getElementById('modal-mascotas-user'));
 
     document.getElementById("contenedor-mascotas-user").innerHTML = '';
-    usuarioAutenticado.mascotas.forEach(mascota => {
+    mascotasCliente.mascotas.forEach(mascota => {
         document.getElementById("contenedor-mascotas-user").innerHTML += `
             <div class=" " id="mascota" >
                 <div>
@@ -190,14 +116,95 @@ const mostrarMascotasCliente = () => {
     modal.show();
 }
 
-const adoptar = (idMascota) => {
-    var mascotaAdoptar;
-    mascotas.forEach(mascota => {
-        if(idMascota == mascota.id){
-            mascotaAdoptar = mascota;
-        }
+function obtenerMascotasCliente() {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+      
+      fetch(`http://192.168.0.101:8000/usuarios/obtener/mascotas/${usuarioAutenticado.idusuario}`, requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            mascotasCliente = result;
+            console.log(mascotasCliente);
+            mostrarMascotasCliente();
+        })
+        .catch(error => console.log('error', error));
+}
+
+function adoptar(idMascota){
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+    "id_usuario": usuarioAutenticado.idusuario,
+    "id_mascota": idMascota
+    });
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+    };
+
+    fetch("http://192.168.0.101:8000/mascotas/adoptar", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+        alert("Transacción exitosa. Muchas Gracias.")
+        console.log(result);
     })
+    .catch(error => console.log('error', error));
+
     
-    usuarioAutenticado.mascotas.push(mascotaAdoptar);
-    alert("Transacción exitosa. Muchas Gracias.")
+}
+
+function obtenerGatos(){
+    var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+    };
+
+    fetch("http://192.168.0.101:8000/mascotas/obtener/gatos", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        gatos =  result;
+        console.log(result);
+        mostrarGatos();
+    })
+    .catch(error => console.log('error', error));
+}
+
+const mostrarPerros = () => {
+    document.getElementById("contenedor-mascotas").innerHTML = '';
+    perros.forEach(perro => {
+        document.getElementById("contenedor-mascotas").innerHTML += `
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-12 " id="mascota" >
+                    <div>
+                        <img src="../src/${perro.img}" alt="img mascota" class="card-img-top" >
+                        <div id="nombre-mascota">${perro.nombre}</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button id="btn-adoptar" onclick="adoptar(${perro.id_mascota})">ADOPTAR</button> 
+                    </div>
+                </div>
+         `
+    });
+}
+
+function obtenerPerros(){
+    var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+    };
+
+    fetch("http://192.168.0.101:8000/mascotas/obtener/perros", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        perros =  result.mascotas;
+        console.log(perros);
+        mostrarPerros();
+    })
+    .catch(error => console.log('error', error));
 }
